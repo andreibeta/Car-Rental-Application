@@ -1,0 +1,130 @@
+<?php
+  session_start();
+  include("administrator\db_connect_administrator.php");
+ if($_SESSION['login']!==true)
+	{	
+    header('location:index.php');
+    }
+else{
+	
+	
+?>
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="theme-color" content="#3e454c">
+	
+	<title>Car Rental Portal |Admin Manage Vehicles   </title>
+
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- Sandstone Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Bootstrap Datatables -->
+	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+	<!-- Bootstrap social button library -->
+	<link rel="stylesheet" href="css/bootstrap-social.css">
+	<!-- Bootstrap select -->
+	<link rel="stylesheet" href="css/bootstrap-select.css">
+	<!-- Bootstrap file input -->
+	<link rel="stylesheet" href="css/fileinput.min.css">
+	<!-- Awesome Bootstrap checkbox -->
+	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
+	<!-- Admin Stye -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="admin/css/style.css">
+  
+
+</head>
+<body>
+	<?php include('include/header_user.php');?>
+
+	<div class="ts-main-content">
+		
+		<div class="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<h2 class="page-title">User Accepted Bookings</h2>
+
+						<!-- Zero Configuration Table -->
+						<div class="panel panel-default">
+							<div class="panel-heading">Bookings Info</div>
+							<div class="panel-body">
+							
+								<table id="zct" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+										<th>Number</th>
+											<th>Username</th>
+											<th>Vehicle Id</th>
+											<th>From Date</th>
+											<th>To Date</th>
+											<th>Message</th>
+											
+											
+										</tr>
+									</thead>
+									
+									<tbody>
+
+									<?php 
+									$username=$_SESSION['username'];
+$query="SELECT * FROM accepted_requests where username='$username'";
+if(count(getAll($query))>0){
+    foreach(getAll($query) as $row){
+	 			?>	
+										<tr>
+											<td><?php echo $row['id'];?></td>
+											<td><?php echo $row['username'];?></td>
+											<td><?php echo $row['car_type'];?></td>
+											<td><?php echo $row['date_in'];?></td>
+											<td><?php echo $row['date_out'];?></td>
+											<td><?php echo $row['message'];?></td>
+											
+									
+
+										</tr>
+										<?php  }
+										}else{
+	   echo "No requests accepted right now";
+   } ?>
+										
+									</tbody>
+								</table>
+
+						
+
+							</div>
+						</div>
+
+					
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Loading Scripts -->
+	<script src="admin/js/jquery.min.js"></script>
+	<script src="admin/js/bootstrap-select.min.js"></script>
+	<script src="admin/js/bootstrap.min.js"></script>
+	<script src="admin/js/jquery.dataTables.min.js"></script>
+	<script src="admin/js/dataTables.bootstrap.min.js"></script>
+	<script src="admin/js/Chart.min.js"></script>
+	<script src="admin/js/fileinput.js"></script>
+	<script src="admin/js/chartData.js"></script>
+	<script src="admin/js/main.js"></script>
+</body>
+</html>
+<?php } ?>
