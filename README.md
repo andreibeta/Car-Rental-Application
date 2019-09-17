@@ -8,7 +8,7 @@ If you want to check out my application, you can see a live version of it here:
 
 TO CONNECT TO SEE THE WHOLE WEBSITE, YOU CAN USE THIS ACCOUNTS FOR:
 
-    -USER ACCOUNT( username: username@yahoo.com password: username)
+    -USER ACCOUNT( username: username@yahoo.com password: 123456)
     
 	-ADMIN ACCOUNT( username: administrator password: administrator)
 
